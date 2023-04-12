@@ -18,6 +18,10 @@ import heapq
 import itertools
 
 
+def distance(city1, city2):
+	return math.sqrt((city2._x - city1._x) ** 2 + (city2._y - city1._y) ** 2)
+
+
 class TSPSolver:
 	def __init__( self, gui_view ):
 		self._scenario = None
@@ -158,18 +162,50 @@ class TSPSolver:
 		algorithm</returns>
 	'''
 
-	def fancy( self,time_allowance=60.0 ):
+	# Two-Opt Algorithm
+	def fancy(self, time_allowance=60.0):
 		# This object holds the results of the algorithm solution
 		results = {}
+		cities = self._scenario.getCities()
+		bssf = cities[:]
+		num_sols = 0
+		len_cities = len(cities)
+		improved = True
+		time_start = time.time()
 
-		#
+		# loop until no improvement is made
+		while improved and time.time() - time_start < time_allowance:
+			improved = False
+			# loop through all edges and try to swap them
+			for i in range(1, len_cities):
+				for j in range(i + 1, len_cities):
+					if j - i == 1:
+						continue
+					distance_original = distance(cities[i-1], cities[i]) + distance(cities[j], cities[j-1])
+					distance_new =		distance(cities[i-1], cities[j]) + distance(cities[i], cities[j-1])
+
+					# if new distance is shorter, swap the edges
+					if distance_new < distance_original:
+						cities[i:j] = reversed(cities[i:j])
+						improved = True
+					else:
+						#if new path is longer, decide whether to accept it or not
+						if random.random() < math.exp(-(distance_new - distance_original)):
+							cities[i:j] = reversed(cities[i:j])
+							improved = True
+
+			# if improved, update the best solution so far
+			if improved:
+				bssf = cities[:]
+				num_sols += 1
 
 		# Set final results and return
 		results['cost'] = 999
-		results['time'] = time_allowance
-		results['count'] = 999
-		results['soln'] = None
+		results['time'] = time.time() - time_start
+		results['count'] = num_sols
+		results['soln'] = TSPSolution(bssf)
 		results['max'] = None
 		results['total'] = None
 		results['pruned'] = None
 		return results
+
