@@ -109,4 +109,17 @@ class TSPSolver:
 	'''
 
 	def fancy( self,time_allowance=60.0 ):
-		pass
+		# This object holds the results of the algorithm solution
+		results = {}
+
+		#
+
+		# Set final results and return
+		results['cost'] = 999
+		results['time'] = time_allowance
+		results['count'] = 999
+		results['soln'] = None
+		results['max'] = None
+		results['total'] = None
+		results['pruned'] = None
+		return results
