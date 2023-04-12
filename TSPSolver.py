@@ -81,7 +81,57 @@ class TSPSolver:
 	'''
 
 	def greedy( self,time_allowance=60.0 ):
-		pass
+		results = {}
+		cities = self._scenario.getCities()
+		ncities = len(cities)
+		found_tour = False
+		count = 0
+		bssf = None
+		start_time = time.time()
+
+		#The current node that we start at, I started at node A every time
+		curr_node = 0
+		visited_nodes = [curr_node]
+		curr_city = visited_nodes[-1]
+
+		while len(visited_nodes) < ncities:
+			min_dist = np.inf
+			city_index = None
+			for neighborCity in range(ncities):
+				#Checks and calculates the minimum distance, and makes sure it doesn't find any nodes that have been visited before
+				if cities[curr_city].costTo(cities[neighborCity]) < min_dist and visited_nodes.count(neighborCity) == 0:
+					city_index = neighborCity
+					min_dist = cities[curr_city].costTo(cities[neighborCity])
+			#If there were no paths less than infinity
+			if min_dist == np.inf:
+				curr_city = visited_nodes[-2]
+			#Add the city with the smallest val to the route and set the curr_city to it
+			else:
+				visited_nodes.append(city_index)
+				curr_city = visited_nodes[-1]
+
+
+		route = []
+		#Adds all the cities to the route and then creates the bssf from it.
+		if len(visited_nodes) == ncities:
+			for i in range(ncities):
+				route.append(cities[visited_nodes[i]])
+			bssf = TSPSolution(route)
+			found_tour = True
+			count += 1
+		else:
+			count = "No Solution"
+
+		end_time = time.time()
+		results['cost'] = bssf.cost if found_tour else math.inf
+		results['time'] = end_time - start_time
+		results['count'] = count
+		results['soln'] = bssf
+		results['max'] = None
+		results['total'] = None
+		results['pruned'] = None
+
+		return results
 
 
 
