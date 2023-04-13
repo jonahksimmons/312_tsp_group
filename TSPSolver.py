@@ -149,6 +149,8 @@ class TSPSolver:
 	'''
 
 	def branchAndBound( self, time_allowance=60.0 ):
+		# TODO: could Jacob or John (whoever we decided on) add their version of the branchAndBound here
+		# I think it's needed for the comparison in the report
 		pass
 
 
@@ -167,7 +169,12 @@ class TSPSolver:
 		# This object holds the results of the algorithm solution
 		results = {}
 		cities = self._scenario.getCities()
-		bssf = cities[:]
+
+		# 2-opt starts with a fast, poor solution and improves it.
+		# In this case, it's the random solution.
+		# This means that the final cost <= initial cost
+		bssf = self.defaultRandomTour()['soln']
+
 		num_sols = 0
 		len_cities = len(cities)
 		improved = True
@@ -176,11 +183,16 @@ class TSPSolver:
 		# loop until no improvement is made
 		while improved and time.time() - time_start < time_allowance:
 			improved = False
+			route = bssf.route
+
 			# loop through all edges and try to swap them
+            # Should "cities" be changed to "route" as the cites don't indicate paths?
+            # I think this might be causing the infinite loop
 			for i in range(1, len_cities):
 				for j in range(i + 1, len_cities):
 					if j - i == 1:
 						continue
+
 					distance_original = distance(cities[i-1], cities[i]) + distance(cities[j], cities[j-1])
 					distance_new =		distance(cities[i-1], cities[j]) + distance(cities[i], cities[j-1])
 
@@ -190,22 +202,23 @@ class TSPSolver:
 						improved = True
 					else:
 						#if new path is longer, decide whether to accept it or not
+						# Jonah: is this the random chance to jump out of local minimums?
 						if random.random() < math.exp(-(distance_new - distance_original)):
 							cities[i:j] = reversed(cities[i:j])
 							improved = True
 
 			# if improved, update the best solution so far
 			if improved:
-				bssf = cities[:]
+				bssf = TSPSolution(route)
 				num_sols += 1
 
 		# Set final results and return
-		results['cost'] = 999
+		results['cost'] = bssf.cost
 		results['time'] = time.time() - time_start
 		results['count'] = num_sols
-		results['soln'] = TSPSolution(bssf)
+		results['soln'] = bssf
 		results['max'] = None
 		results['total'] = None
-		results['pruned'] = None
+		results['pruned'] = None  # 2-opt does not prune
 		return results
 
