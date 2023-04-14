@@ -84,7 +84,7 @@ class TSPSolver:
 		algorithm</returns>
 	'''
 
-	def greedy( self,time_allowance=60.0 ):
+	def greedy( self,time_allowance=60.0, starting_node=0 ) -> dict:
 		results = {}
 		cities = self._scenario.getCities()
 		ncities = len(cities)
@@ -93,8 +93,9 @@ class TSPSolver:
 		bssf = None
 		start_time = time.time()
 
-		#The current node that we start at, I started at node A every time
-		curr_node = 0
+		#The current node that we start at
+		# this allows us to run it multiple times and get different solutions
+		curr_node = starting_node
 		visited_nodes = [curr_node]
 		curr_city = visited_nodes[-1]
 
@@ -154,6 +155,10 @@ class TSPSolver:
 		pass
 
 
+	# helper function for find the min
+	# couldn't figure out a lambda for it
+	def get_cost(self, solution) -> float:
+		return solution["cost"]
 
 	''' <summary>
 		This is the entry point for the algorithm you'll write for your group project.
@@ -168,52 +173,56 @@ class TSPSolver:
 	def fancy(self, time_allowance=60.0):
 		# This object holds the results of the algorithm solution
 		results = {}
+
 		cities = self._scenario.getCities()
 
 		# 2-opt starts with a fast, poor solution and improves it.
-		# In this case, it's the random solution.
+		# In this case, it's the best of 10 different greedy solutions.
 		# This means that the final cost <= initial cost
-		bssf = self.defaultRandomTour()['soln']
+		bssf: dict = min(
+					[self.greedy(time_allowance, i) for i in range(min(10, len(cities)))], 
+				key=self.get_cost)
+		print("initial cost:", bssf["cost"])
 
 		num_sols = 0
-		len_cities = len(cities)
 		improved = True
 		time_start = time.time()
 
 		# loop until no improvement is made
 		while improved and time.time() - time_start < time_allowance:
 			improved = False
-			route = bssf.route
+			route = bssf['soln'].route
 
 			# loop through all edges and try to swap them
-            # Should "cities" be changed to "route" as the cites don't indicate paths?
-            # I think this might be causing the infinite loop
-			for i in range(1, len_cities):
-				for j in range(i + 1, len_cities):
-					if j - i == 1:
-						continue
+			# Time complexity: O(n^2)
+			for i in range(len(route)-2):  # TODO: unsure if these bounds are right
+				for j in range(i + 1, len(route)-1):  # TODO: same here
+					# the cost of two existing paths
+					# compared to the cost if the destinations were swapped
+					distance_original = distance(route[i], route[i+1]) + distance(route[j], route[j+1])
+					distance_new =		distance(route[i], route[j+1]) + distance(route[j], route[i+1])
 
-					distance_original = distance(cities[i-1], cities[i]) + distance(cities[j], cities[j-1])
-					distance_new =		distance(cities[i-1], cities[j]) + distance(cities[i], cities[j-1])
+					# if new path is longer, decide whether to accept it or not
+					# tempararily removing this for consistency
+					random_chance = random.random() < math.exp(-(distance_new - distance_original))
 
 					# if new distance is shorter, swap the edges
 					if distance_new < distance_original:
-						cities[i:j] = reversed(cities[i:j])
+						route[i:j] = reversed(route[i:j])
 						improved = True
-					else:
-						#if new path is longer, decide whether to accept it or not
-						# Jonah: is this the random chance to jump out of local minimums?
-						if random.random() < math.exp(-(distance_new - distance_original)):
-							cities[i:j] = reversed(cities[i:j])
-							improved = True
 
 			# if improved, update the best solution so far
 			if improved:
-				bssf = TSPSolution(route)
+				# This might be the part where the results aren't set propperly
+				new_solution = TSPSolution(route)
+				bssf["soln"] = new_solution
+				bssf["cost"] = new_solution.cost
 				num_sols += 1
 
+		# TODO: I think I messed up some part of the result so it doesn't display
 		# Set final results and return
-		results['cost'] = bssf.cost
+		print("Final solution", bssf["cost"])
+		results['cost'] = bssf["cost"]
 		results['time'] = time.time() - time_start
 		results['count'] = num_sols
 		results['soln'] = bssf
@@ -221,4 +230,6 @@ class TSPSolver:
 		results['total'] = None
 		results['pruned'] = None  # 2-opt does not prune
 		return results
+	
+
 
