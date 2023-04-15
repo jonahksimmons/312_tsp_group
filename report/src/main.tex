@@ -1,10 +1,20 @@
 \documentclass[12pt]{report}
-\usepackage{tikz}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage[style=alphabetic]{biblatex}
 \addbibresource{./refrences.bib}
 \usepackage{multicol}
-\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{tikz}
+
+
+% change section numbering to remove leading chapter numbering
+\makeatletter
+\renewcommand \thesection {\@arabic\c@section}
+\makeatother
+
 
 % 5ab,14acd,18
 \begin{document}
@@ -47,13 +57,33 @@
 
     \section{Greedy}
     \subsection{Disadvantages}
-    Greedy algorithms solves problems with the "best now" mentality. It looks at all current options, assigns some quantifier to each, and chooses the best. For example, a greedy chess solver would protect its pieces or capture rather than sacrificing a piece for a checkmate in three moves. As it does not take into account future decisions, it usually does not return the optimal for more complex problems, TSP being one of those. \\
+    Greedy algorithms solves problems with the "best now" mentality. It looks at all current options, assigns some quantifier to each, and chooses the best. For example, a greedy chess solver would protect its pieces or capture rather than sacrificing a piece for a checkmate in three moves. As it does not take into account future decisions, it usually does not return the optimal for more complex problems, TSP being one of those.
     \subsection{Advantages}
-    Although it usually does not return an optimal, greedy approaches return good enough solutions for most problems. From the tests we ran, the greedy solutions were hard to beat by the other approaches.\\
+    Although it usually does not return an optimal, greedy approaches return good enough solutions for most problems. From the tests we ran, the greedy solutions were hard to beat by much.
 
     In addition to returning a good value, it does it very fast. The main issue with guaranteed optimal approaches is that it must take into account all other possibilities to ensure the best solution; this takes an unpractical amount of time.
+\end{multicols}
 
+\subsection{Time Complexity}
+\begin{algorithm}
+\caption{Greedy algorithm}
+\label{Greedy_Alg}
+\begin{algorithmic}[1]
+\Procedure{Greedy $\rightarrow$ path}{}
+    \State let current = starting city
+    \While{not visited all cities}
+    \State let best = closest neighbor to \textit{current} that has not been visited
+    \State path.add(best)
+    \State current = best
+    \EndWhile
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 
+\begin{multicols}{2}
+    Given the pseudo-code, we can see the time complexity is $O(V \times E)$, where $V$ is the number of cities and $E$ is the number of out edges. The outer loop goes through all nodes, $O(V)$, and looks at all neighbors, $O(E)$.
+    \subsection{Purpose}
+    The purpose of including the greedy algorithm is to offer a benchmark and comparison to the other algorithms. It produces fine results, but can be improved with a little bit of work.
 \end{multicols}
 
 
