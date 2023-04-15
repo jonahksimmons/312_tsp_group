@@ -149,14 +149,150 @@ class TSPSolver:
 		max queue size, total number of states created, and number of pruned states.</returns>
 	'''
 
-	def branchAndBound( self, time_allowance=60.0 ):
-		# TODO: could Jacob or John (whoever we decided on) add their version of the branchAndBound here
-		# I think it's needed for the comparison in the report
-		pass
+	# Jacob: My branch and bound starts to hit the time limit starting at about 20 cities.
+	#          When it hits time limit, it still returns a solution, but probably not optimal.
+	# 		   IDK, if all we need is data to compare, then I guess it's good enough
+	def branchAndBound(self, time_allowance=60.0):
+		# Initialize variables and start timer
+		results = {}
+		cities = self._scenario.getCities()
+		ncities = len(cities)
+		count = 1
+		max_queue = 0
+		num_pruned = 0
+		total_states = 0
+		start_time = time.time()
 
+		# Create initial cost matrix and heap
+		temp_bssf = self.defaultRandomTour().get('soln')
+		self.bssf = self.CostObj(temp_bssf.cost, [], [], temp_bssf.route, 0)
+		self.init_cost = np.zeros((ncities, ncities))
+		for i in range(ncities):
+			for j in range(ncities):
+				if i == j:
+					self.init_cost[i, j] = np.inf
+					continue
+				self.init_cost[i, j] = cities[i].costTo(cities[j])
+		first_obj = self._reduceMatrix(self.CostObj(0, self.init_cost, [], [], 0), 0, True)
+		self.init_cost = first_obj._matrix.copy()
+		self.min_heap = [first_obj]
+		heapq.heapify(self.min_heap)
 
-	# helper function for find the min
-	# couldn't figure out a lambda for it
+		# Loop until time limit is reached or heap is empty
+		while time.time() - start_time < time_allowance:
+			if len(self.min_heap) == 0:
+				break
+			if len(self.min_heap) > max_queue:
+				max_queue = len(self.min_heap)
+			# Pop object with lowest cost from heap
+			cur_obj = heapq.heappop(self.min_heap)
+			# Loop through unvisited cities
+			for i in range(len(cities)):
+				if i in cur_obj._path:
+					continue
+				# Update total states explored
+				total_states += 1
+				# Reduce matrix and calculate new cost
+				red_obj = self._reduceMatrix(cur_obj, i)
+				if red_obj._cost < self.bssf._cost:
+					# Add new object to heap if it has a lower cost than the current bssf
+					heapq.heappush(self.min_heap, red_obj)
+					# Update bssf if new object visits all cities
+					if len(red_obj._path) == ncities:
+						count += 1
+						self.bssf = self.CostObj(red_obj._cost, red_obj._matrix.copy(), red_obj._path.copy(),
+												 red_obj._city_path.copy(), red_obj._index)
+				else:
+					# Update number of pruned states
+					num_pruned += 1
+		end_time = time.time()
+
+		# Record results
+		results['cost'] = self.bssf._cost if self.bssf is not None else np.inf
+		results['time'] = end_time - start_time
+		results['count'] = count
+		results['soln'] = TSPSolution(self.bssf._city_path)
+		results['max'] = max_queue
+		results['total'] = total_states
+		results['pruned'] = num_pruned
+
+		# Return results
+		return results
+
+	# Function for reducing cost matrix
+	# BnB Helper function
+	def _reduceMatrix(self, cur_obj, dest, first=False):
+		# Create a copy of the matrix and cost
+		matrix_copy = cur_obj._matrix.copy()
+		cost_copy = cur_obj._matrix.copy()
+
+		# Set indices for the start and end cities
+		start_city = cur_obj._index
+		end_city = dest
+
+		# Initialize reduction_cost to 0
+		reduction_cost = 0
+
+		if not first:
+			# Set the distance between the start and end cities to infinity
+			matrix_copy[start_city, end_city] = np.inf
+			matrix_copy[end_city, start_city] = np.inf
+
+			# Set the row and column of the start city to infinity
+			matrix_copy[start_city] = np.inf
+			matrix_copy[:, end_city] = np.inf
+
+			# Calculate the reduction cost based on the current cost and the cost between the start and end cities
+			reduction_cost += cur_obj._cost
+			reduction_cost += cost_copy[cur_obj._index, dest]
+
+		# Reduce the rows and columns of the matrix
+		for row in range(len(matrix_copy)):
+			# Find the minimum value in the row
+			min_row = matrix_copy[row].min()
+			if min_row != np.inf:
+				# Subtract the minimum value from the row
+				reduction_cost += min_row
+				matrix_copy[row] = matrix_copy[row] - min_row
+
+		# Reduce the columns of the matrix
+		for col in range(len(matrix_copy)):
+			# Find the minimum value in the column
+			min_col = matrix_copy[:, col].min()
+			if min_col != np.inf:
+				# Subtract the minimum value from the column
+				reduction_cost += min_col
+				matrix_copy[:, col] = matrix_copy[:, col] - min_col
+
+		# Create copies of the path and city path lists, and append the destination city to them
+		path_copy = cur_obj._path.copy()
+		path_copy.append(dest)
+
+		city_path_copy = cur_obj._city_path.copy()
+		city_path_copy.append(self._scenario.getCities()[dest])
+
+		# Create and return a new CostObj instance
+		return self.CostObj(reduction_cost, matrix_copy, path_copy, city_path_copy, dest)
+
+	# Object to organize the data needed
+	# BnB Helper object
+	class CostObj:
+
+		def __init__(self, cost, matrix, path, city_path, index):
+			self._matrix = matrix
+			self._cost = cost
+			self._path = path
+			self._city_path = city_path
+			self._index = index
+
+		def __lt__(self, cmp):
+			if len(self._path) > len(cmp._path):
+				return True
+			if len(self._path) == len(cmp._path) and self._cost < cmp._cost:
+				return True
+			return False
+
+	# BnB Helper function
 	def get_cost(self, solution) -> float:
 		return solution["cost"]
 
