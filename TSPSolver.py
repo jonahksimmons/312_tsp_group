@@ -307,61 +307,48 @@ class TSPSolver:
 
 	# Two-Opt Algorithm
 	def fancy(self, time_allowance=60.0):
-		# This object holds the results of the algorithm solution
-		results = {}
-
+		time_start = time.time()
 		cities = self._scenario.getCities()
 
-		# 2-opt starts with a fast, poor solution and improves it.
-		# In this case, it's the best of 10 different greedy solutions.
-		# This means that the final cost <= initial cost
+		# Start with greedy solution
 		bssf: dict = min(
-					[self.greedy(time_allowance, i) for i in range(min(10, len(cities)))], 
-				key=self.get_cost)
-		print("initial cost:", bssf["cost"])
+			[self.greedy(time_allowance, i) for i in range(min(10, len(cities)))],
+			key=self.get_cost)
 
+		tour = bssf['soln'].route
+		len_tour = len(tour)
 		num_sols = 0
-		improved = True
-		time_start = time.time()
+		improvement = True
 
-		# loop until no improvement is made
-		while improved and time.time() - time_start < time_allowance:
-			improved = False
-			route = bssf['soln'].route
+		# 2-Opt iteratively improves the tour
+		while improvement:
+			improvement = False
+			for i in range(1, len_tour - 1):
+				for j in range(i + 1, len_tour):
+					# Get two edges to be (potentially) swapped
+					A, B = tour[i - 1], tour[i]
+					C, D = tour[j], tour[(j + 1) % len_tour]
 
-			# loop through all edges and try to swap them
-			# Time complexity: O(n^2)
-			for i in range(len(route)-2):  # TODO: unsure if these bounds are right
-				for j in range(i + 1, len(route)-1):  # TODO: same here
-					# the cost of two existing paths
-					# compared to the cost if the destinations were swapped
-					distance_original = distance(route[i], route[i+1]) + distance(route[j], route[j+1])
-					distance_new =		distance(route[i], route[j+1]) + distance(route[j], route[i+1])
+					# Check if swapping edges will improve tour
+					if distance(A, C) + distance(B, D) < distance(A, B) + distance(C, D):
+						# Reverse the edges
+						tour[i:j + 1] = reversed(tour[i:j + 1])
+						improvement = True
+						num_sols += 1
 
-					# if new path is longer, decide whether to accept it or not
-					# tempararily removing this for consistency
-					random_chance = random.random() < math.exp(-(distance_new - distance_original))
+					# Jacob: I can't get this to work as intended, causes infinite loop
+					# It might need to be placed in a different spot within the loops, haven't tested that
+					#else:
+					#	if random.random() < 0.5:
+					#		tour[i:j + 1] = reversed(tour[i:j + 1])
+					#		improvement = True
 
-					# if new distance is shorter, swap the edges
-					if distance_new < distance_original:
-						route[i:j] = reversed(route[i:j])
-						improved = True
-
-			# if improved, update the best solution so far
-			if improved:
-				# This might be the part where the results aren't set propperly
-				new_solution = TSPSolution(route)
-				bssf["soln"] = new_solution
-				bssf["cost"] = new_solution.cost
-				num_sols += 1
-
-		# TODO: I think I messed up some part of the result so it doesn't display
-		# Set final results and return
-		print("Final solution", bssf["cost"])
-		results['cost'] = bssf["cost"]
+		results = {}
+		final_tour = TSPSolution(tour)
+		results['cost'] = final_tour.cost
 		results['time'] = time.time() - time_start
 		results['count'] = num_sols
-		results['soln'] = bssf
+		results['soln'] = final_tour
 		results['max'] = None
 		results['total'] = None
 		results['pruned'] = None  # 2-opt does not prune
