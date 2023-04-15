@@ -1,6 +1,9 @@
-\documentclass{article}
+\documentclass[12pt]{report}
 \usepackage{tikz}
 \usepackage{amsmath}
+\usepackage[style=alphabetic]{biblatex}
+\addbibresource{./refrences.bib}
+\usepackage{multicol}
 \usepackage{amssymb}
 
 % 5ab,14acd,18
@@ -11,12 +14,12 @@
     \begin{center}
         \vspace*{1cm}
         \Huge
-        \textbf{Yet Another 2-opt Optimization} \\
+        \textbf{Yet Another 2-opt} \\
 
         \vspace{0.5cm}
         \large
-        Simple And Fast Traveling \\
-        Salesperson Problem Approximation
+        Simple And Fast Approximation For \\
+        The Traveling Salesperson Problem
             
         \vspace{1.5cm}
 
@@ -33,8 +36,26 @@
         Professor Tony Martinez \\
         Brigham Young University \\
         April 18, 2023
+        \normalsize
     \end{center}
 \end{titlepage}
 
+\begin{multicols}{2}
+
+    \section{Abstract}
+    The Traveling Salesperson Problem (TSP) is arguably the most well know NP-Hard problem in the world. From its formalizing in the 19th century, it seems all possible solutions have been exhausted: from optimal exponential solutions to fast heuristic approximations. We will be focusing on an approximation that uses a greedy approach to find a fast solution. Then, we will improve upon it using an optimization known as \textit{k-opt}.
+
+    \section{Greedy}
+    \subsection{Disadvantages}
+    Greedy algorithms solves problems with the "best now" mentality. It looks at all current options, assigns some quantifier to each, and chooses the best. For example, a greedy chess solver would protect its pieces or capture rather than sacrificing a piece for a checkmate in three moves. As it does not take into account future decisions, it usually does not return the optimal for more complex problems, TSP being one of those. \\
+    \subsection{Advantages}
+    Although it usually does not return an optimal, greedy approaches return good enough solutions for most problems. From the tests we ran, the greedy solutions were hard to beat by the other approaches.\\
+
+    In addition to returning a good value, it does it very fast. The main issue with guaranteed optimal approaches is that it must take into account all other possibilities to ensure the best solution; this takes an unpractical amount of time.
+
+
+\end{multicols}
+
 
 \end{document}
+\printbibliography
