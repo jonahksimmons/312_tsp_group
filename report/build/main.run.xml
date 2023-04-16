@@ -41,7 +41,7 @@
   >
 ]>
 <requests version="1.0">
-  <internal package="biblatex" priority="9" active="0">
+  <internal package="biblatex" priority="9" active="1">
     <generic>latex</generic>
     <provides type="dynamic">
       <file>main.bcf</file>
@@ -54,13 +54,13 @@
       <file>blx-compat.def</file>
       <file>biblatex.def</file>
       <file>standard.bbx</file>
-      <file>alphabetic.bbx</file>
-      <file>alphabetic.cbx</file>
+      <file>numeric.bbx</file>
+      <file>numeric.cbx</file>
       <file>biblatex.cfg</file>
       <file>english.lbx</file>
     </requires>
   </internal>
-  <external package="biblatex" priority="5" active="0">
+  <external package="biblatex" priority="5" active="1">
     <generic>biber</generic>
     <cmdline>
       <binary>biber</binary>
@@ -79,7 +79,7 @@
       <file>main.bcf</file>
     </requires>
     <requires type="editable">
-      <file>./refrences.bib</file>
+      <file>refrences.bib</file>
     </requires>
   </external>
 </requests>

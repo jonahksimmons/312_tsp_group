@@ -1,0 +1,10 @@
+TODO:
+[x] abstract
+[x] intro
+[x] algorithm explanation
+[ ] mark what ideas were ours, and which were taken from online
+[ ] empirical table
+[ ] analysis of results
+[ ] discuss empirical vs theoretical
+[ ] future work
+
