@@ -336,11 +336,16 @@ class TSPSolver:
 						improvement = True
 						num_sols += 1
 						break
+
+					'''
+                    # Sadly this doesn't improve the result much and it increases runtime by too much
+                    # but this was part of the testing process and it will be documented
 					else:
 						randChoice =  random.choice([True, False])
 						if randChoice == True:
 							tour[i:j + 1] = reversed(tour[i:j + 1])
 							improvement = True
+                    '''
 
 					# Jacob: I can't get this to work as intended, causes infinite loop
 					# It might need to be placed in a different spot within the loops, haven't tested that
