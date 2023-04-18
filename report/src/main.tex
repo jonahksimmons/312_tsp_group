@@ -95,6 +95,16 @@
     The issues with this approach are that it must have a valid solution to begin with and it only works for bi-directional graphs. For many real world problems, the bi-directional requirement can be a big problem and the initial solution that is chosen really impacts the output of 2-opt.
     \subsection{Advantages}
     Considering its shortcomings, 2-opt is still a very good approach. Since it is an optimization, it will always return a valid solution that is as good or better than your initial solution. In addition, 2-opt is rather fast.
+    \subsection{Improvements}
+    While the base algorithm is fine, there are some changes we can make to overcome some of its disadvantages. Since it is a local algorithm, or only looks at changes that are "close", it can easily miss a better solution that is further away.
+
+    To get out of these local minimums, we used a Monte Carlo approach. We would simulate a coin flip to determine if there would be a swap (if the normal conditions aren't met) or not. This randomness gives it the ability to explore a new path that might lead to an overall better solution. From testing of this approach, we determined that it did not improve the final results by any significant amount and it dramatically increased the runtime.
+
+    Since this initial Monte Carlo approach was not effective, we decided to lower the chance of a random swap down to ten percent. This was far better than the previous 50/50 and was able to overcome the localization issue with standard 2-opt.
+
+    Another key issue with 2-opt is how the initial solution strongly effects the final solution. If a random or purely convenient initial solution was chosen, it would not guarantee a good final result. Because of this, we had to be careful to pick an initial solution that was fast but still good. From trying a few different options, we settled on the best of a few greedy solutions each starting at different points. Since the greedy was quite fast but determined on starting point, running it multiple times will produce a fairly good solution without increasing the time complexity.
+
+    With these slight improvements, we were able to find very good solutions in a practical amount of time.
 \end{multicols}
 
 \subsection{Time Complexity}

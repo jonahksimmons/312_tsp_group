@@ -1,0 +1,71 @@
+Procedure: For each algorithm, run it on 5 different, random seeds and report the everage. For all algorithms aside from Fancy, the Difficulty should be Hard.
+
+Seeds = 451, 71, 179, 575, 493
+
+# Random:
+## size 15
+times = 0.001967, 0.003309, 0.001586, 0.000972, 0.001199
+length = 18297, 24133, 20465, 18552, 18857
+## size 30
+times = 0.032717, 0.019570, 0.044666, 0.025325, 0.056175
+length = 44092, 41000, 42018, 41302, 41488
+## size 60
+times = 39.485760, 26.388664, 6.661371, 13.129581, 25.024437
+length = 78036, 68581, 80693, 79325, 80599
+## size 100
+times = time out, time out
+length = inf, inf
+## size 200
+time out
+
+# Greedy
+## size 15
+time = 0.00452, 0.002913, 0.001001, 0.001969, 0.000960
+length = 13420, 11289, 10820, 11643, 12772
+## size 30
+time = 0.007365, 0.006064, 0.007010, 0.001455, 0.005879
+length = 19634, 18644, 15540, 19157, 17154
+## size 60
+time = 0.005879, 0.006346, 0.001360, 0.001635, 0.001377
+length = 17154, 15954, 15745, 19315, 18728
+## size 100
+time = 0.033573, 0.025979, 0.026897, 0.030477, 0.029243
+length = 37054, 36957, 35681, 34993, 38247
+## size 200
+time = 0.060865, 0.052792, 0.061466, 0.062895, 0.125276
+length = 54435, 60793, 58309, 57181, 55154
+
+# Branch and Bound
+## size 15
+time = 0.765493, 40.854654, 0.611602, 2.084450, 5.649376
+length = 8666, 10059, 8146, 9802, 9342
+## size 30
+time = time out, 
+length = x, 
+## size 60
+time = 
+length = 
+## size 100
+time = 
+length = 
+## size 200
+time = 
+length = 
+
+# 2-opt
+## size 15
+time = 
+length = 
+## size 30
+time = 
+length = 
+## size 60
+time = 
+length = 
+## size 100
+time = 
+length = 
+## size 200
+time = 
+length = 
+
