@@ -154,7 +154,7 @@
 
 \begin{multicols}{2}
     \subsection{Analysis Of Results}
-    One thing we learn from the data is that there is real difference. Considering how fast 2-opt runs, it is impressive that there were noticeable improvements. From this we can learn that deliberate effort can make a meaningful impact. From further testing, we discover that the upper limit of practicality is around 4,000 cities where it takes more than 10 minutes. Considering how hard a problem TSP is and how it consistently improves over other approximations, these are very impressive results.
+    One thing we learn from the data is that there is real difference. Considering how fast 2-opt runs, it is impressive that there were noticeable improvements. From this we can learn that deliberate effort can make a meaningful impact. From further testing, we discover that the upper limit of practicality is around 4,000 cities where it takes more than 10 minutes. Considering how hard a problem TSP is and how it consistently improves over other approximations, these are very impressive results. We found that the sweet spot was around 3000 cities, where the 2-opt stopped improving on the greedy by any significant amount.
 
     \section{Future Work}
     For further attempts, there are some considerations. The main concern is escaping local minimums with 2-opt. From our testing, this would require a more sophisticated approach than Monte Carlo. One possible approach would be running 2-opt on multiple initial solutions that might not be immediately as desirable, but might have a lower final solution.
