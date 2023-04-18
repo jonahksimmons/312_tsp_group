@@ -1,6 +1,6 @@
-Procedure: For each algorithm, run it on 5 different, random seeds and report the everage. For all algorithms the difficulty will be Normal.
+Procedure: For each algorithm, run it on 5 different seeds and report the average. For all algorithms, the difficulty will be Normal.
 
-Seeds = 451, 71, 179, 575, 493
+note to self: Seeds = 451, 71, 179, 575, 493
 
 # Random:
 ## size 15
@@ -54,7 +54,6 @@ time =
 length = 
 
 # 2-opt
-Seeds = 451, 71, 179, 575, 493
 ## size 15
 time = 0.017014, 0.016711, 0.016693, 0.019050, 0.020514
 length = 9149, 9590, 8603, 9173, 8752
