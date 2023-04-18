@@ -1,4 +1,4 @@
-Procedure: For each algorithm, run it on 5 different, random seeds and report the everage. For all algorithms aside from Fancy, the Difficulty should be Hard.
+Procedure: For each algorithm, run it on 5 different, random seeds and report the everage. For all algorithms the difficulty will be Normal.
 
 Seeds = 451, 71, 179, 575, 493
 
@@ -40,8 +40,8 @@ length = 54435, 60793, 58309, 57181, 55154
 time = 0.765493, 40.854654, 0.611602, 2.084450, 5.649376
 length = 8666, 10059, 8146, 9802, 9342
 ## size 30
-time = time out, 
-length = x, 
+time = time out, time out,
+length = x, x,
 ## size 60
 time = 
 length = 
@@ -53,19 +53,20 @@ time =
 length = 
 
 # 2-opt
+Seeds = 451, 71, 179, 575, 493
 ## size 15
-time = 
-length = 
+time = 0.019561, 0.017641, 0.015046, 0.017631, 0.020016
+length = 8294, 9049, 7839, 8687, 8510
 ## size 30
-time = 
-length = 
+time = 0.034566, 0.036202, 0.035717, 0.033685, 0.036029
+length = 10896, 12983, 11143, 11396, 12002
 ## size 60
-time = 
-length = 
+time = 0.081779, 0.085221, 0.086640, 0.086933, 0.077064
+length = 15325, 15035, 15513, 16614, 16959
 ## size 100
-time = 
-length = 
+time = 0.210769, 0.186786, 0.208187, 0.178953, 0.191840
+length = 19063, 20746, 19294, 20512, 20021
 ## size 200
-time = 
-length = 
+time = 0.792621, 0.764785, 0.754274, 0.715957, 0.709403
+length = 26332, 28630, 27746, 27484, 28012
 
