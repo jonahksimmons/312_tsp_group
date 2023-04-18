@@ -4,9 +4,11 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{changepage}
+\usepackage{graphicx}
 \usepackage{multicol}
 \usepackage{tikz}
 
+\graphicspath{ {./images/} }
 
 % change section numbering to remove leading chapter numbering
 \makeatletter
@@ -23,7 +25,7 @@
     \begin{center}
         \vspace*{1cm}
         \Huge
-        \textbf{Monte Carlo 2-opt} \\
+        \textbf{Yet Another 2-opt} \\
 
         \vspace{0.5cm}
         \large
@@ -136,33 +138,29 @@
     Since 2-opt has to use an initial solution, the total time complexity must account for that as well. For our implantation, we use the best of 10 runs of our greedy algorithm, so the time complexity would be $O(V \times E + P \times E^2)$, assuming $P$ is a constant, is equivalent to $O(V \times E + E^2)$.
 \end{multicols}
 
-    \newcommand*{\TitleParbox}[1]{\parbox[c]{1.75cm}{\raggedright #1}}%
+    \section{Examples}
+    \includegraphics[scale=0.4]{greedy_example_200} \\
+    \\
+    \includegraphics[scale=0.4]{fancy_example_200} \\
+
+\begin{multicols}{2}
+    From the pictures, you can clearly see the geometric effect that 2-opt has on the graph. As you see, it removes any edges that cross over each other, which generates a shorter overall path.
+\end{multicols}
+
     \section{Results}
-    W.I.P.
-    \small
-    \begin{adjustwidth}{-100pt}{100pt}
-    \begin{tabular}{|c|c|c|c|}
-        \hline
-         Random & Greedy & Branch and Bound & 2 Opt \\
-    \end{tabular}\\
-    \begin{tabular}{|c|cc|ccc|ccc|ccc|}
-        \hline
-        \parbox[c]{1.5cm}{\raggedright Number of cities} & \parbox[c]{1cm}{\raggedright Time } \vline & \parbox[c]{1cm}{\raggedright Length }&
-        \parbox[c]{1.5cm}{\raggedright Time } & Length & \parbox[c]{1.5cm}{\raggedright Percent of rand } &
-        Time & Length & \parbox[c]{1.5cm}{\raggedright Percent of greedy } &
-        Time & Length & \parbox[c]{1.5cm}{\raggedright Percent of greedy }\\
-        \hline
-    \end{tabular}
+    \begin{adjustwidth}{-3cm}{100cm}
+    \includegraphics[scale=0.45]{table}
     \end{adjustwidth}
 
 \begin{multicols}{2}
+    \subsection{Analysis Of Results}
+    One thing we learn from the data is that there is real difference. Considering how fast 2-opt runs, it is impressive that there were noticeable improvements. From this we can learn that deliberate effort can make a meaningful impact. From further testing, we discover that the upper limit of practicality is around 4,000 cities where it takes more than 10 minutes. Considering how hard a problem TSP is and how it consistently improves over other approximations, these are very impressive results.
+
     \section{Future Work}
     For further attempts, there are some considerations. The main concern is escaping local minimums with 2-opt. From our testing, this would require a more sophisticated approach than Monte Carlo. One possible approach would be running 2-opt on multiple initial solutions that might not be immediately as desirable, but might have a lower final solution.
 
     Another direction would be to use an entirely different solver for initial solutions than greedy. There are many approximations to this problem, each with their respective pros and cons. Much additional testing could discover the best future course of action for either of these shortcomings.
 \end{multicols}
 
-%\bibliography{main} 
-%\bibliographystyle{ieeetr}
 
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.6)  17 APR 2023 23:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.6)  18 APR 2023 00:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -145,25 +145,49 @@ Package: changepage 2009/10/20 v1.0c check page and change page layout
 \c@cp@cntr=\count281
 \cp@tempcnt=\count282
 )
+(/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks24
+)
+(/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+)
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+
+(/usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen150
+\Gin@req@width=\dimen151
+)
 (/usr/share/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2021/11/30 v1.9d multicolumn formatting (FMi)
 \c@tracingmulticols=\count283
 \mult@box=\box55
-\multicol@leftmargin=\dimen150
+\multicol@leftmargin=\dimen152
 \c@unbalance=\count284
 \c@collectmore=\count285
 \doublecol@number=\count286
 \multicoltolerance=\count287
 \multicolpretolerance=\count288
-\full@width=\dimen151
-\page@free=\dimen152
-\premulticols=\dimen153
-\postmulticols=\dimen154
+\full@width=\dimen153
+\page@free=\dimen154
+\premulticols=\dimen155
+\postmulticols=\dimen156
 \multicolsep=\skip56
 \multicolbaselineskip=\skip57
 \partial@page=\box56
 \last@line=\box57
-\maxbalancingoverflow=\dimen155
+\maxbalancingoverflow=\dimen157
 \mult@rightbox=\box58
 \mult@grightbox=\box59
 \mult@firstbox=\box60
@@ -207,9 +231,9 @@ Package: multicol 2021/11/30 v1.9d multicolumn formatting (FMi)
 \c@minrows=\count289
 \c@columnbadness=\count290
 \c@finalcolumnbadness=\count291
-\last@try=\dimen156
-\multicolovershoot=\dimen157
-\multicolundershoot=\dimen158
+\last@try=\dimen158
+\multicolovershoot=\dimen159
+\multicolundershoot=\dimen160
 \mult@nat@firstbox=\box98
 \colbreak@box=\box99
 \mc@col@check@num=\count292
@@ -218,9 +242,9 @@ Package: multicol 2021/11/30 v1.9d multicolumn formatting (FMi)
 (/usr/share/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/share/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
-\pgfutil@everybye=\toks24
-\pgfutil@tempdima=\dimen159
-\pgfutil@tempdimb=\dimen160
+\pgfutil@everybye=\toks25
+\pgfutil@tempdima=\dimen161
+\pgfutil@tempdimb=\dimen162
 )
 (/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
 \pgfutil@abb=\box100
@@ -232,30 +256,6 @@ Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
 Package: pgf 2023-01-15 v3.1.10 (3.1.10)
 
 (/usr/share/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
-(/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
-
-(/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
-\KV@toks@=\toks25
-)
-(/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
-
-(/usr/share/texmf-dist/tex/latex/graphics/trig.sty
-Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
-)
-(/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
-File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
-)
-Package graphics Info: Driver file: pdftex.def on input line 107.
-
-(/usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
-))
-\Gin@req@height=\dimen161
-\Gin@req@width=\dimen162
-)
 (/usr/share/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
 (/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
@@ -506,20 +506,20 @@ File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 (build/main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
  (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count315
@@ -544,47 +544,77 @@ e
 )) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 75.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 77.
 
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 75.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 77.
 
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [2] [3]
-Overfull \hbox (5.15773pt too wide) in paragraph at lines 150--150
-[]\OT1/cmr/m/n/10.95 Length  
+<./images//greedy_example_200.png, id=25, 792.9625pt x 628.3475pt>
+File: ./images//greedy_example_200.png Graphic file (type png)
+<use ./images//greedy_example_200.png>
+Package pdftex.def Info: ./images//greedy_example_200.png  used on input line 1
+42.
+(pdftex.def)             Requested size: 317.17938pt x 251.33455pt.
+<./images//fancy_example_200.png, id=26, 792.9625pt x 628.3475pt>
+File: ./images//fancy_example_200.png Graphic file (type png)
+<use ./images//fancy_example_200.png>
+Package pdftex.def Info: ./images//fancy_example_200.png  used on input line 14
+4.
+(pdftex.def)             Requested size: 317.17938pt x 251.33455pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 142--145
+
  []
 
 
-Overfull \hbox (179.06609pt too wide) in paragraph at lines 144--156
+Underfull \hbox (badness 10000) in paragraph at lines 142--145
+
+ []
+
+[4] [5 <./images//greedy_example_200.png> <./images//fancy_example_200.png>]
+<./images//table.png, id=34, 1264.725pt x 568.1225pt>
+File: ./images//table.png Graphic file (type png)
+<use ./images//table.png>
+Package pdftex.def Info: ./images//table.png  used on input line 152.
+(pdftex.def)             Requested size: 569.121pt x 255.65276pt.
+
+Overfull \hbox (2369.91733pt too wide) in paragraph at lines 152--153
+[]
+ []
+
+
+Overfull \hbox (2939.03833pt too wide) in paragraph at lines 152--153
 [] 
  []
 
-[4] [5] (build/main.aux) ) 
+[6 <./images//table.png>] [7] (build/main.aux) ) 
 Here is how much of TeX's memory you used:
- 13947 strings out of 476025
- 276123 string characters out of 5796533
+ 13975 strings out of 476025
+ 276970 string characters out of 5796533
  1860388 words of memory out of 5000000
- 34161 multiletter control sequences out of 15000+600000
- 521252 words of font info for 65 fonts, out of 8000000 for 9000
+ 34186 multiletter control sequences out of 15000+600000
+ 519704 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 102i,8n,104p,632b,347s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><
-/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
-pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on build/main.pdf (6 pages, 114647 bytes).
+ 84i,5n,89p,632b,347s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmcsc10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/sh
+are/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmti12.pfb>
+Output written on build/main.pdf (8 pages, 511417 bytes).
 PDF statistics:
- 66 PDF objects out of 1000 (max. 8388607)
- 41 compressed objects within 1 object stream
+ 77 PDF objects out of 1000 (max. 8388607)
+ 47 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 28 words of extra memory for PDF output out of 10000 (max. 10000000)
 
